@@ -2,12 +2,12 @@ import os
 
 import mechanicalsoup
 
-PEGASS_URL = 'https://pegass.croix-rouge.fr'
-AUTH_URL = 'https://id.authentification.croix-rouge.fr'
+DEFAULT_PEGASS_URL = 'https://pegass.croix-rouge.fr'
+DEFAULT_AUTH_URL = 'https://id.authentification.croix-rouge.fr'
 DEFAULT_USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:66.0) Gecko/20100101 Firefox/66.0'
 
 
-def login(username, password, pegass_url=PEGASS_URL, auth_url=AUTH_URL, user_agent=DEFAULT_USER_AGENT):
+def login(username, password, pegass_url=DEFAULT_PEGASS_URL, auth_url=DEFAULT_AUTH_URL, user_agent=DEFAULT_USER_AGENT):
     browser = mechanicalsoup.StatefulBrowser(user_agent=user_agent)
     browser.open(auth_url)
     browser.select_form('form[action="/my.policy"]')
@@ -25,7 +25,7 @@ def login(username, password, pegass_url=PEGASS_URL, auth_url=AUTH_URL, user_age
     return cookies
 
 
-def request(url_to_call, pegass_url=PEGASS_URL, auth_url=AUTH_URL, user_agent=DEFAULT_USER_AGENT, **kwargs):
+def request(url_to_call, pegass_url=DEFAULT_PEGASS_URL, auth_url=DEFAULT_AUTH_URL, user_agent=DEFAULT_USER_AGENT, **kwargs):
     browser = mechanicalsoup.StatefulBrowser(user_agent=user_agent)
     if 'cookies' in kwargs:
         return browser.get('{}/{}'.format(pegass_url, url_to_call), cookies=kwargs['cookies']).json()

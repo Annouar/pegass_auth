@@ -36,6 +36,8 @@ def request(url_to_call, pegass_url=DEFAULT_PEGASS_URL, auth_url=DEFAULT_AUTH_UR
 
 
 if __name__ == '__main__':
-    auth_cookies = login(os.environ.get('username'), os.environ.get('password'))
+    username = os.environ['username']
+    password = os.environ['password']
+    auth_cookies = login(username, password)
     rules = request('crf/rest/gestiondesdroits', cookies=auth_cookies)
     print(rules)

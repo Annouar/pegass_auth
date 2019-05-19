@@ -2,7 +2,8 @@ import pytest
 
 import mechanicalsoup
 
-import crf_pegass_auth.pegass_authentication as pegass
+import pegass_authentication.pegass_authentication as pegass
+
 
 def test_login_should_retrieve_auth_cookies(mocker):
     mocker.patch.multiple(mechanicalsoup.StatefulBrowser, open=mocker.DEFAULT, select_form=mocker.DEFAULT, __setitem__=mocker.DEFAULT, submit_selected=mocker.DEFAULT, get_cookiejar=mocker.DEFAULT)

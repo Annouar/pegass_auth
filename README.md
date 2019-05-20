@@ -1,6 +1,6 @@
 
 # pegass_auth
-> A tiny client to manage your Sellsy plateform using Python
+> Made Pegass API Request easy !
 
 French Red Cross is currently using a tool named [Pegass](https://id.authentification.croix-rouge.fr/my.policy) to visualize, enroll to activities, monitor them and more... This application is carefully thought out, and the different views give you plenty options to display your data. However, my motivation was to extract Pegass data to analyze it and create some custom views. The application was not designed to let users get data out of the box (closed API, no CSV extract, ...). That's why I made this little module to help whoever wants to extract their data in a simple way through the Pegass API. :red_car: :red_car: :fire_engine: :fire_engine: :rotating_light: :rotating_light:
 
@@ -74,7 +74,7 @@ print(rules)
 **Note**: The last way to make request (the one with *username* and *password*) runs each time the ```login``` logic. Make *cookies* methods your first choice if you need to do multiple API requests.
 
 All the previous codes prints the following response:
-```json
+```javascript
 {
    'utilisateur':{
       'id':'01XXXXXXXX',

@@ -2,7 +2,7 @@ import pytest
 
 import mechanicalsoup
 
-import pegass_authentication.pegass_authentication as pegass
+import pegass_auth.pegass as pegass
 
 
 def test_login_should_retrieve_auth_cookies(mocker):

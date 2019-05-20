@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import os
-from setuptools import find_packages, setup
+from setuptools import setup, find_packages
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -20,7 +20,7 @@ tests_require = [
 ]
 
 about = {}
-with open(os.path.join(here, '__version__.py'), mode='r') as f:
+with open(os.path.join(here, 'pegass_auth', '__version__.py'), mode='r') as f:
     exec(f.read(), about)
 
 with open('README.md', mode='r') as f:
@@ -44,6 +44,6 @@ setup(
     license=about['__license__'],
     keywords='pegass croix rouge login authentication',
     project_urls={
-        'Bug Reports': 'https://github.com/Annouar/pegass_authentication/issues'
+        'Bug Reports': 'https://github.com/Annouar/pegass_auth/issues'
     }
 )

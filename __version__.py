@@ -1,6 +1,0 @@
-__title__ = 'pegass_authentication'
-__description__ = 'pegass_authentication is a tiny client tool to help you make some HTTP request on Pegass'
-__url__ = 'https://github.com/Annouar/pegass_authentication'
-__version__ = '1.0.0'
-__author__ = 'Annouar'
-__license__ = 'MIT'

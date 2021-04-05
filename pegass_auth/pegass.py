@@ -27,11 +27,16 @@ def login(username, password, pegass_url=DEFAULT_PEGASS_URL, auth_url=DEFAULT_AU
 
 def request(url_to_call, pegass_url=DEFAULT_PEGASS_URL, auth_url=DEFAULT_AUTH_URL, user_agent=DEFAULT_USER_AGENT, **kwargs):
     browser = mechanicalsoup.StatefulBrowser(user_agent=user_agent)
+    response = ''
     if 'cookies' in kwargs:
-        return browser.get('{}/{}'.format(pegass_url, url_to_call), cookies=kwargs['cookies']).json()
+        response = browser.get('{}/{}'.format(pegass_url, url_to_call), cookies=kwargs['cookies']).json()
+        browser.close()
+        return response
     if 'username' in kwargs and 'password' in kwargs:
         auth_cookies = login(kwargs['username'], kwargs['password'], pegass_url, auth_url, user_agent)
-        return browser.get('{}/{}'.format(pegass_url, url_to_call), cookies=auth_cookies).json()
+        response = browser.get('{}/{}'.format(pegass_url, url_to_call), cookies=auth_cookies).json()
+        browser.close()
+        return response
     raise TypeError('Missing either cookies or username/password to achieve the request')
 
 

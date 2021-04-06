@@ -1,6 +1,7 @@
 import os
 
 import mechanicalsoup
+import json
 
 DEFAULT_PEGASS_URL = 'https://pegass.croix-rouge.fr'
 DEFAULT_AUTH_URL = 'https://id.authentification.croix-rouge.fr'
@@ -36,6 +37,24 @@ def request(url_to_call, pegass_url=DEFAULT_PEGASS_URL, auth_url=DEFAULT_AUTH_UR
     if 'username' in kwargs and 'password' in kwargs:
         auth_cookies = login(kwargs['username'], kwargs['password'], pegass_url, auth_url, user_agent)
         response = browser.get('{}/{}'.format(pegass_url, url_to_call), cookies=auth_cookies, verify=verify).json()
+        browser.close()
+        return response
+    raise TypeError('Missing either cookies or username/password to achieve the request')
+
+def put(url_to_call, data, pegass_url=DEFAULT_PEGASS_URL, auth_url=DEFAULT_AUTH_URL, user_agent=DEFAULT_USER_AGENT, verify=DEFAULT_SSL_VERIFY, **kwargs):
+    browser = mechanicalsoup.StatefulBrowser(user_agent=user_agent)
+    response = ''
+    additional_headers = {}
+    additional_headers['content-encoding'] = 'gzip'
+    additional_headers['Content-Type'] = 'application/json;charset=utf-8'
+
+    if 'cookies' in kwargs:
+        response = browser.put('{}/{}'.format(pegass_url, url_to_call), data=json.dumps(data).encode('utf-8'), cookies=kwargs['cookies'], verify=verify, headers=additional_headers)
+        browser.close()
+        return response
+    if 'username' in kwargs and 'password' in kwargs:
+        auth_cookies = login(kwargs['username'], kwargs['password'], pegass_url, auth_url, user_agent)
+        response = browser.put('{}/{}'.format(pegass_url, url_to_call), data=json.dumps(data).encode('utf-8'), cookies=auth_cookies, verify=verify, headers=additional_headers)
         browser.close()
         return response
     raise TypeError('Missing either cookies or username/password to achieve the request')

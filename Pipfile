@@ -10,5 +10,4 @@ pytest-mock = "~=3.5.1"
 pytest-cov = "~=2.11.1"
 
 [packages]
-mechanicalsoup = "~=0.12.0"
-lxml = "~=4.6.3"
+mechanicalsoup = "*"

@@ -8,8 +8,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 packages = find_packages(exclude=('tests',))
 
 requires = [
-    'mechanicalsoup>=0.12.0',
-    'lxml>=4.6.3'
+    'mechanicalsoup'
 ]
 
 setup_requires = [

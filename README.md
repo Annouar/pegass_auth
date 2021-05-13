@@ -1,15 +1,18 @@
-
 # pegass_auth
+
 > Made Pegass API Request easy !
+
+[![Tests](https://github.com/Annouar/pegass_auth/actions/workflows/tests.yml/badge.svg?branch=master&event=push)](https://github.com/Annouar/pegass_auth/actions/workflows/tests.yml)
 
 French Red Cross is currently using a tool named [Pegass](https://id.authentification.croix-rouge.fr/my.policy) to visualize, enroll to activities, monitor them and more... This application is carefully thought out, and the different views give you plenty options to display your data. However, my motivation was to extract Pegass data to analyze it and create some custom views. The application was not designed to let users get data out of the box (closed API, no CSV extract, ...). That's why I made this little module to help whoever wants to extract their data in a simple way through the Pegass API. :red_car: :red_car: :fire_engine: :fire_engine: :rotating_light: :rotating_light:
 
 ### Features
+
 - Get authentication cookies to open Pegass API gate with your application credential
 - Create an abstraction for requesting the API
 
-
 ## Installing
+
 ```shell
 # Connect to your virtualenv
 $  workon projectenv
@@ -19,6 +22,7 @@ $  pip install pegass_auth
 ```
 
 Verify now if the package as been successfully installed
+
 ```shell
 $  python
 >> import pegass_auth # Should not raise exception
@@ -44,14 +48,15 @@ r = requests.get('{}/crf/rest/gestiondesdroits'.format(pegass_auth.DEFAULT_PEGAS
 if r.status_code == 200:
     print(r.json())
 else:
-    print('Request went wrong ! Status code returned : {}'.format(r.status_code))     
+    print('Request went wrong ! Status code returned : {}'.format(r.status_code))
 ```
-
 
 ### Using package abstraction to make request
 
 The package gives you two ways to make a request to Pegass API :
+
 - Using cookies :
+
 ```python
 import os
 import pegass_auth as pegass
@@ -62,6 +67,7 @@ print(rules)
 ```
 
 - Using credentials:
+
 ```python
 import os
 import pegass_auth as pegass
@@ -71,9 +77,11 @@ password = os.environ['password']
 rules = pegass.request('crf/rest/gestiondesdroits', username=username, password=password)
 print(rules)
 ```
-**Note**: The last way to make request (the one with *username* and *password*) runs each time the ```login``` logic. Make *cookies* methods your first choice if you need to do multiple API requests.
+
+**Note**: The last way to make request (the one with _username_ and _password_) runs each time the `login` logic. Make _cookies_ methods your first choice if you need to do multiple API requests.
 
 All the previous codes prints the following response:
+
 ```javascript
 {
    'utilisateur':{
@@ -109,11 +117,12 @@ All the previous codes prints the following response:
 ```
 
 ## Pegass API Endpoints
+
 I've started to do a reverse engineering on Pegass app to list the API endpoints I need in order to achieve my personal app.
 
 ## Error handler
-Their is no error handler implemented yet in the package.
 
+Their is no error handler implemented yet in the package.
 
 ## Links
 
@@ -121,7 +130,6 @@ Their is no error handler implemented yet in the package.
 - [pegass_auth issue tracker](https://github.com/Annouar/pegass_auth/issues)
 - [French Red Cross](https://www.croix-rouge.fr/)
 
-
 ## License
 
- - **MIT** : http://opensource.org/licenses/MIT
+- **MIT** : http://opensource.org/licenses/MIT
